@@ -5,7 +5,7 @@ const fs = require('fs');
 async function Scraper(){
     // задать настройки браузера
     // запускать браузер без "головы"
-    const options = new chrome.Options().addArguments('--headless');
+    const options = new chrome.Options().addArguments('--headless').setPageLoadStrategy('normal');
 
     // Инициализация веб-драйвера для работы с браузером
     const driver = new Builder().forBrowser('chrome').setChromeOptions(options).build();
@@ -13,12 +13,6 @@ async function Scraper(){
     try {
         // Перейти на страницу
         await driver.get('https://www.scrapingcourse.com/infinite-scrolling');
-
-        /*
-        // получить HTML код страницы
-        const html = await driver.getPageSource();
-        console.log(html);
-        */
 
         // цикл для продолжения прокрутки до тех пор, пока не закончится загрузка контента
         let lastHeight = 0;
