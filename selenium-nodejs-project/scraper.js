@@ -20,6 +20,25 @@ async function Scraper(){
         console.log(html);
         */
 
+        // цикл для продолжения прокрутки до тех пор, пока не закончится загрузка контента
+        let lastHeight = 0;
+        while (true) {
+            // прокрутить дол конца страницы
+            await driver.executeScript('window.scrollTo(0, document.body.scrollHeight)');
+
+            // ожидать 3 секунды
+            await driver.sleep(3000);
+
+            // получить текущую высоту страницы
+            const currentHeight = await driver.executeScript('return document.body.scrollHeight');
+
+            // прервать цикл, если больше не загружен контент
+            if (currentHeight === lastHeight) {
+                break;
+            }
+            lastHeight = currentHeight;
+        }
+
         // родительский элемент-контейнер в котором содержится название и цена товара
         let parentElements = await driver.findElements(By.css('.product-info'));
 
