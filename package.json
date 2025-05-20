@@ -1,0 +1,14 @@
+{
+  "name": "seleniumnodejstest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "scrap"
+  },
+  "author": "s.miller",
+  "license": "ISC",
+  "dependencies": {
+    "selenium-webdriver": "^4.32.0"
+  }
+}
